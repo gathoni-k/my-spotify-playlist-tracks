@@ -21,5 +21,9 @@ ClientSECRET='XXXXXXXX'
 
 ### Project Start
 ```JavaScript
-npm start
+npm run start
+```
+### Project build
+```JavaScript
+npm run build
 ```
