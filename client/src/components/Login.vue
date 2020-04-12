@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <a href="http://localhost:8888/auth/spotify" id="btn-spotify"  @click="getInfo"><i class="fab fa-spotify"></i>login to spotify </a>
+    <a href="http://localhost:8080/auth/spotify" id="btn-spotify"  @click="getInfo"><i class="fab fa-spotify"></i>login to spotify </a>
     <button id="btn"  v-on:click.once="getInfo">Get playlists </button>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     isLoggedIn(){
-      axios.get('http://localhost:8888/user',
+      axios.get('http://localhost:8080/user',
       {
         headers: {
           'Content-Type': 'application/json',
