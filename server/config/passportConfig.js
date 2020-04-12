@@ -1,10 +1,11 @@
 const passport = require('passport')
 const SpotifyStrategy = require('passport-spotify').Strategy
 require('dotenv').config()
+// require credentials
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 
-
+// serialize and deserialize user
 passport.serializeUser(function(user, done) {
     done(null, user);
   });
@@ -13,6 +14,7 @@ passport.serializeUser(function(user, done) {
     done(null, user);
   });
 
+//   use spotify strategy
 passport.use(
     new SpotifyStrategy(
         {
@@ -22,7 +24,6 @@ passport.use(
         },
         (accessToken, refreshToken, expires_in, profile,done) => {
             process.nextTick(() => {
-                console.log(accessToken)
                 let user = {
                     userId: profile.id,
                     accessToken: accessToken,

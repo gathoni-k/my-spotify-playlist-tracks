@@ -6,14 +6,18 @@ const cors = require('cors')
 const session = require('express-session')
 const app = express();
 const passport = require('passport')
- 
-var indexRouter = require('./routes/index');
+require('dotenv').config()
+
+// require routes
+let indexRouter = require('./routes/index');
+// require passport config file
 require('./config/passportConfig')
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors())
+// add headers
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -33,11 +37,11 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   let err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
+app.use(function(req, res, next) {
+  let err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
  
 // error handler
 app.use(function(err, req, res, next) {
@@ -51,4 +55,4 @@ app.use(function(err, req, res, next) {
 });
  
 // HTTP server
-http.createServer(app).listen(8080);
+http.createServer(app).listen(process.env.PORT || 8080);

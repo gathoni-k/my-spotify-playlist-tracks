@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
+// login route
 router.get('/auth/spotify', passport.authenticate('spotify'));
-   
+
+// callback url
 router.get(
     '/callback',
     passport.authenticate('spotify', { 
@@ -16,7 +18,7 @@ router.get(
     }
 );
 
-//   login route
+//   serve user info
 router.get('/user', (req, res) =>{
     if(req.user === undefined){
         res.json({})
